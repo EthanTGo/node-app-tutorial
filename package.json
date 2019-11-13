@@ -1,0 +1,23 @@
+{
+  "name": "app-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "mongoose": "^5.7.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EthanTGo/node-app-tutorial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EthanTGo/node-app-tutorial/issues"
+  },
+  "homepage": "https://github.com/EthanTGo/node-app-tutorial#readme"
+}

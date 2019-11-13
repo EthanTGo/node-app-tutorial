@@ -1,5 +1,3 @@
-
-
 const os = require('os');
 var totalMemory = os.totalmem();
 var freeMemory = os.freemem();
@@ -11,7 +9,7 @@ console.log(freeMemory);
 console.log(`Total Memory: ${totalMemory}`);
 console.log(`Free Memory: ${freeMemory}`);
 
-
+//------------------------------------------
 const fs = require('fs');
 const files = fs.readdirSync('./')
 // files contains all the files in the current folder, defined by path
@@ -22,30 +20,42 @@ fs.readdir('./', function (err, files) {
     if (err) console.log('Error', err);
     else console.log('Result', files)
 })
-
+//-----------------------------------------------
 
 // An event is a signal that something has happened in our application
 // EventEmitter is a core module in Node
 
 // EventEmitter is a class because we define the variable with upper case
+//Here we pass on data
 const EventEmitter = require('events');
 //emitter is the object created from the class
-const emitter = new EventEmitter();
 
-//Register a listener. Do this first before raising an event
-//Here we pass on data
-emitter.on('messageLogged',  (arg) => {
+
+const Logger = require('./logger')
+const logger = new Logger();
+
+//Register an event called message logged
+logger.on('messageLogged', (arg) => {
     console.log('listener called', arg)
 })
 
-//emmiter.emit('name of event') raises an event
-//Raised an event
-emitter.emit('messageLogged', {id: 1, url: 'http://'});
-//Making a noise, produce - signalling that an event has happened
+logger.log('message')
 
-//Raise: logging (data:message)
-emitter.on('logging', (arg) => {
-    console.log('listener called', arg)
+//************************************************************
+//Note that we don't use this modle, but here we learn the idea behind the express backend framework
+
+const http = require('http')
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        res.write('Hello World')
+        res.end()
+    }
+
+    if (req.url === '/api/courses') {
+        res.write(JSON.stringify([1, 2, 3]))
+        res.end()
+    }
 })
-
-emitter.emit('logging', {data:'message'})
+//server has all the capablty of an EventEmitter
+server.listen(3000);
+console.log('Listening on port 3000')
